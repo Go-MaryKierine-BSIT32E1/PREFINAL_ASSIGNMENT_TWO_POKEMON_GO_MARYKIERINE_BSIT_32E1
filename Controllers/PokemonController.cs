@@ -26,13 +26,10 @@ namespace PREFINAL_ASSIGNMENT_TWO_POKEMON.Controllers
                 response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
                 var pokemonResponse = JsonConvert.DeserializeObject<PokemonResponse>(content);
-
-                // Pass the list of Pokemon to the view
                 return View(pokemonResponse.Results);
             }
             catch (HttpRequestException ex)
             {
-                // Handle HTTP request errors
                 return StatusCode(500, $"Error retrieving Pokemon data: {ex.Message}");
             }
         }
@@ -46,12 +43,10 @@ namespace PREFINAL_ASSIGNMENT_TWO_POKEMON.Controllers
                 var content = await response.Content.ReadAsStringAsync();
                 var pokemon = JsonConvert.DeserializeObject<Pokemon>(content);
 
-                // Pass the Pokemon details to the view
                 return View(pokemon);
             }
             catch (HttpRequestException ex)
             {
-                // Handle HTTP request errors
                 return StatusCode(500, $"Error retrieving Pokemon details: {ex.Message}");
             }
         }
